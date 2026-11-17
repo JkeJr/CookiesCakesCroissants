@@ -1,0 +1,319 @@
+﻿using OliveBranchBakes.Objects.Customers;
+using OliveBranchBakes.Objects.Order_Assets;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Text;
+using System.Threading.Channels;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
+namespace OliveBranchBakes.Objects
+{
+    public enum StatusEnum
+    {
+        Recieved,
+        InProgress,
+        Ready,
+        Completed,
+        Cancelled
+    }
+    public class Order
+    {
+        private static string pathStart => $@"..\..\..\Documents\Orders\";
+
+        private List<OrderItemGroup> itemGroups;
+        public int Count => itemGroups.Count;
+        public int ItemCount
+        {
+            get
+            {
+                int num = 0;
+                foreach (OrderItemGroup group in itemGroups)
+                    num += group.Count;
+                return num;
+            }
+        }
+        public int Number { get; init; }
+        public Account CustomerAccount { get; set; }
+        public string GuestName { get; set; } = "";
+        public string Comments { get; set; } = "";
+        public DateTime DateOrdered { get; set; }
+        public DateTime DateScheduled { get; set; }
+        public StatusEnum Status { get; set; } 
+
+        public decimal Subtotal
+        {
+            get
+            {
+                decimal subtotal = 0.00m;
+                foreach (OrderItemGroup itemGroup in itemGroups)
+                    subtotal += itemGroup.Price;
+
+                return subtotal;
+            }
+        }
+        public decimal Discounted => Subtotal - (RuleManagement.GetDiscount(Subtotal));
+        public decimal Total => Discounted + (RuleManagement.GetTax(Discounted));
+
+        // Change Event
+        public delegate void ChangeHandler(Order order);
+        public event ChangeHandler OrderChanged = null!;
+
+        public Order()
+        {
+            itemGroups = new();
+
+            // Set Number to a random integer, check every order on file to check for duplicate order numbers.
+            // If there's a matching number, repeat the process. Otherwise, end the loop.
+            bool unique = true;
+            do
+            {
+                Number = new Random().Next(99999999);
+
+                List<Order> orders = DataManagement.GetOrders();
+                foreach (Order order in orders)
+                    unique = !(order.Number == this.Number);
+            } while (!unique);
+        }
+        public Order(int num)
+        {
+            Number = num;
+        }
+        public Order(int num, string name)
+        {
+            itemGroups = new();
+            Number = num;
+            GuestName = name;
+        }
+        public Order(List<OrderItemGroup> items, string comments)
+        {
+            this.itemGroups = items;
+            this.Comments = comments;
+        }
+
+        public static string GetPath(int orderID) => $@"{pathStart}{orderID.ToString("D8")}.txt";
+        public void Save()
+        {
+            using StreamWriter textOut =
+                new StreamWriter(
+                new FileStream(GetPath(Number), FileMode.Create, FileAccess.Write));
+
+            // accountID|date created|date scheduled|status
+
+            // if account is null, set accoundID to the guestname
+            if (this.CustomerAccount == null)
+                textOut.Write(GuestName + "|");
+            else 
+                textOut.Write(CustomerAccount.AccountID + "|");
+
+            textOut.Write(DateOrdered.ToShortDateString() + "|");
+            textOut.Write(DateScheduled.ToShortDateString() + "|");
+            textOut.WriteLine(Status.ToString());
+
+            // comment
+            textOut.WriteLine(Comments);
+
+            // itemtypename|allergy|count
+            for (int i = 0; i < Count; i++)
+            {
+                textOut.Write(this[i].ItemType.Name + "|");
+                textOut.Write(this[i].Allergy.type.ToString() + "|");
+                textOut.WriteLine(this[i].Count);
+            }
+        }
+        public static Order Load(int orderID)
+        {
+            using StreamReader textIn =
+                new StreamReader(
+                new FileStream(GetPath(orderID), FileMode.OpenOrCreate, FileAccess.Read));
+
+            List<string> lines = new();
+            while (textIn.Peek() != -1)
+            {
+                string row = textIn.ReadLine() ?? "";
+
+                lines.Add(row);
+            }
+
+            // num|mm/dd/yyyy|mm/dd/yyyy|status
+            string[] info = lines[0].Split("|");
+            string[] dateOrdered = info[1].Split("/");
+            string[] dateScheduled = info[2].Split("/");
+
+            List<OrderItemGroup> groups = new();
+            for (int i = 2; i < lines.Count; i++)
+            {
+                string[] groupInfo = lines[i].Split("|");
+                ItemList itemList = new();
+                itemList.Fill();
+
+                OrderItemGroup group = new()
+                {
+                    ItemType = itemList[itemList.IndexOf(groupInfo[0])],
+                    Allergy = new(groupInfo[1]),
+                    Count = Convert.ToInt32(groupInfo[2]),
+                };
+                groups.Add(group);
+            }
+
+            Order order = new(orderID)
+            {
+                Comments = lines[1],
+                itemGroups = groups,
+                DateOrdered = new DateTime(Convert.ToInt16(dateOrdered[2]), Convert.ToInt16(dateOrdered[0]), Convert.ToInt16(dateOrdered[1])),
+                DateScheduled = new DateTime(Convert.ToInt16(dateScheduled[2]), Convert.ToInt16(dateScheduled[0]), Convert.ToInt16(dateScheduled[1])),
+                Status = (StatusEnum)Enum.Parse(typeof(StatusEnum), info[3])
+            };
+
+            // check if information is an ID number
+            if (int.TryParse(info[0], out int result))
+
+                // check if file exists. If it does not exist, that means the account attatched to the order DNE.
+                // In that case, keep order.CustomerAccount = null and make the guest name be "Deleted User"
+                if (File.Exists(Account.GetPath(Convert.ToInt32(info[0]))))
+                    order.CustomerAccount = Account.Load(Convert.ToInt32(info[0]));
+                else
+                {
+                    order.GuestName = "Deleted User";
+                    order.Status = StatusEnum.Cancelled;
+                }
+            else
+                order.GuestName = info[0];
+
+            return order;
+        }
+
+        /// <summary>
+        /// Deletes the file associated with this order, if it exists
+        /// </summary>
+        public void Delete()
+        {
+            if (File.Exists(GetPath(Number)))
+                File.Delete(GetPath(Number));
+        }
+
+        // Finds the index of an OrderItem in items that matches the name and allergy
+        // Returns -1 if not found
+        public int IndexOf(OrderItem item, Allergen allergen)
+        {
+            // loop through each itemGroup
+            foreach (OrderItemGroup itemGroup in itemGroups)
+            {
+                if (item.Name == itemGroup.ItemType.Name && allergen == itemGroup.Allergy)
+                {
+                    return itemGroups.IndexOf(itemGroup);
+                }
+            }
+
+            return -1;
+        }
+
+        public int CategoryCount(CategoryEnums category)
+        {
+            int amount = 0;
+            for (int i = 0; i < this.Count; i++)
+            {
+                if (this[i].ItemType.Categories.IndexOf(category) != -1)
+                {
+                    amount += this[i].Count;
+                }
+            }
+
+            return amount;
+        }
+        public void Add(OrderItemGroup itemGroup)
+        {
+            itemGroups.Add(itemGroup);
+            if (OrderChanged != null)
+                OrderChanged(this);
+        }
+        // Adding count to itemGroups at index
+        public void Add(int index, int count)
+        {
+            this[index].Count += count;
+            if (OrderChanged != null)
+                OrderChanged(this);
+        }
+
+        public static Order operator + (Order order, OrderItemGroup itemGroup)
+        {
+            order.Add(itemGroup);
+            return order;
+        }
+
+        // Deleting from the list
+        public void RemoveAt(int index)
+        {
+            this.Remove(itemGroups[index]);
+        }
+        public void Remove(OrderItemGroup itemGroup)
+        {
+            itemGroups.Remove(itemGroup);
+            if (OrderChanged != null)
+                OrderChanged(this);
+        }
+        public static Order operator - (Order order, OrderItemGroup itemGroup)
+        {
+            order.Remove(itemGroup);
+            return order;
+        }
+        public void Clear()
+        {
+            itemGroups.Clear();
+            if (OrderChanged != null)
+                OrderChanged(this);
+        }
+
+        public string GetDisplayText()
+        {
+            // basic info
+            string text = "Name: ";
+            if (CustomerAccount == null)
+                text += GuestName;
+            else
+                text += CustomerAccount.GetName();
+
+            text += $"\nOrder #: {Number.ToString("D8")}\n" +
+                $"Date Ordered: {DateOrdered.ToShortDateString()}\n" +
+                $"Date Scheduled: {DateScheduled.ToShortDateString()}\n" +
+                $"Status: {Status}\n\n";
+            
+            // list of item groups
+            for (int i = 0; i < itemGroups.Count; i++)
+                text += $"Item {i + 1}: {itemGroups[i].GetDisplayText()}\n";
+
+            // comment
+            if (!Comments.IsWhiteSpace() && Comments.Length > 0)
+                text += $"\nComments:\n\"{Comments}\"\n\n";
+
+            // total
+            text += $"Total: {Total.ToString("C")}";
+
+            return text;
+        }
+
+        // Method for indexer
+        public OrderItemGroup this[int i]
+        {
+            get
+            {
+                if (i < 0)
+                {
+                    throw new ArgumentOutOfRangeException(i.ToString());
+                }
+                else if (i > itemGroups.Count)
+                {
+                    throw new ArgumentOutOfRangeException(i.ToString());
+                }
+                else
+                    return itemGroups[i];
+            }
+            set
+            {
+                itemGroups[i] = value;
+                if (OrderChanged != null)
+                    OrderChanged(this);
+            }
+        }
+    }
+}
