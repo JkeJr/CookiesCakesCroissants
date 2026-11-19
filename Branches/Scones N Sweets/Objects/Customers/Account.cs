@@ -15,7 +15,7 @@ namespace OliveBranchBakes.Objects.Customers
     }
     public class Account
     {
-        private static string pathStart => $@"..\..\..\Documents\Accounts\";
+        private static string pathStart => $@"..\..\..\Branches\Scones N Sweets\Documents\Accounts\";
 
         public string Firstname { get; set; }
         public string LastName { get; set; }

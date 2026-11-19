@@ -1,0 +1,445 @@
+﻿namespace OliveBranchBakes.Forms
+{
+    partial class PayesOrderForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            ListViewItem listViewItem1 = new ListViewItem("");
+            label1 = new Label();
+            label2 = new Label();
+            btnContinue = new Button();
+            btnClear = new Button();
+            btnDelete = new Button();
+            splitContainer1 = new SplitContainer();
+            splitContainer2 = new SplitContainer();
+            btnBack = new Button();
+            btnAdd = new Button();
+            numAmount = new NumericUpDown();
+            label6 = new Label();
+            label5 = new Label();
+            cmbboxFilter = new ComboBox();
+            cmbboxAllergy = new ComboBox();
+            chkboxAllergy = new CheckBox();
+            label4 = new Label();
+            listviewItems = new ListView();
+            colAmount = new ColumnHeader();
+            colName = new ColumnHeader();
+            colAllergens = new ColumnHeader();
+            colPrice = new ColumnHeader();
+            txtSubtotal = new TextBox();
+            rtxtComments = new RichTextBox();
+            label7 = new Label();
+            label3 = new Label();
+            listviewOrder = new ListView();
+            colOrderedCount = new ColumnHeader();
+            colOrderedName = new ColumnHeader();
+            colOrderedAllergen = new ColumnHeader();
+            colOrderedPrice = new ColumnHeader();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numAmount).BeginInit();
+            SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Trebuchet MS", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Maroon;
+            label1.Location = new Point(3, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(141, 55);
+            label1.TabIndex = 1;
+            label1.Text = "MENU";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Maroon;
+            label2.Location = new Point(3, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(68, 26);
+            label2.TabIndex = 1;
+            label2.Text = "Order";
+            // 
+            // btnContinue
+            // 
+            btnContinue.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
+            btnContinue.Location = new Point(3, 375);
+            btnContinue.Name = "btnContinue";
+            btnContinue.Size = new Size(150, 48);
+            btnContinue.TabIndex = 7;
+            btnContinue.Text = "Continue";
+            btnContinue.UseVisualStyleBackColor = true;
+            btnContinue.Click += btnContinue_Click;
+            // 
+            // btnClear
+            // 
+            btnClear.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
+            btnClear.Location = new Point(253, 375);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(88, 48);
+            btnClear.TabIndex = 9;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
+            btnDelete.Location = new Point(159, 375);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(88, 48);
+            btnDelete.TabIndex = 8;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Location = new Point(11, 12);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(splitContainer2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(txtSubtotal);
+            splitContainer1.Panel2.Controls.Add(rtxtComments);
+            splitContainer1.Panel2.Controls.Add(label7);
+            splitContainer1.Panel2.Controls.Add(label3);
+            splitContainer1.Panel2.Controls.Add(listviewOrder);
+            splitContainer1.Panel2.Controls.Add(label2);
+            splitContainer1.Panel2.Controls.Add(btnClear);
+            splitContainer1.Panel2.Controls.Add(btnDelete);
+            splitContainer1.Panel2.Controls.Add(btnContinue);
+            splitContainer1.Size = new Size(776, 427);
+            splitContainer1.SplitterDistance = 427;
+            splitContainer1.SplitterWidth = 5;
+            splitContainer1.TabIndex = 4;
+            // 
+            // splitContainer2
+            // 
+            splitContainer2.FixedPanel = FixedPanel.Panel1;
+            splitContainer2.IsSplitterFixed = true;
+            splitContainer2.Location = new Point(0, 0);
+            splitContainer2.Name = "splitContainer2";
+            splitContainer2.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            splitContainer2.Panel1.Controls.Add(btnBack);
+            splitContainer2.Panel1.Controls.Add(label1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            splitContainer2.Panel2.Controls.Add(btnAdd);
+            splitContainer2.Panel2.Controls.Add(numAmount);
+            splitContainer2.Panel2.Controls.Add(label6);
+            splitContainer2.Panel2.Controls.Add(label5);
+            splitContainer2.Panel2.Controls.Add(cmbboxFilter);
+            splitContainer2.Panel2.Controls.Add(cmbboxAllergy);
+            splitContainer2.Panel2.Controls.Add(chkboxAllergy);
+            splitContainer2.Panel2.Controls.Add(label4);
+            splitContainer2.Panel2.Controls.Add(listviewItems);
+            splitContainer2.Size = new Size(425, 427);
+            splitContainer2.SplitterDistance = 63;
+            splitContainer2.TabIndex = 2;
+            // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(309, 3);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(114, 29);
+            btnBack.TabIndex = 0;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold);
+            btnAdd.Location = new Point(239, 307);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(183, 49);
+            btnAdd.TabIndex = 5;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // numAmount
+            // 
+            numAmount.Location = new Point(127, 328);
+            numAmount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numAmount.Name = "numAmount";
+            numAmount.Size = new Size(106, 27);
+            numAmount.TabIndex = 4;
+            numAmount.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label6.Location = new Point(262, 13);
+            label6.Name = "label6";
+            label6.Size = new Size(45, 18);
+            label6.TabIndex = 5;
+            label6.Text = "Filter:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label5.Location = new Point(127, 307);
+            label5.Name = "label5";
+            label5.Size = new Size(105, 18);
+            label5.TabIndex = 5;
+            label5.Text = "Amount: (1-100)";
+            // 
+            // cmbboxFilter
+            // 
+            cmbboxFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbboxFilter.FormattingEnabled = true;
+            cmbboxFilter.Items.AddRange(new object[] { "All", "Donuts", "Cakes", "Cookies" });
+            cmbboxFilter.Location = new Point(309, 8);
+            cmbboxFilter.Name = "cmbboxFilter";
+            cmbboxFilter.Size = new Size(114, 28);
+            cmbboxFilter.TabIndex = 1;
+            cmbboxFilter.SelectedIndexChanged += cmbboxFilter_SelectedIndexChanged;
+            // 
+            // cmbboxAllergy
+            // 
+            cmbboxAllergy.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbboxAllergy.FormattingEnabled = true;
+            cmbboxAllergy.Items.AddRange(new object[] { "Tree Nut", "Pine Nut", "Peanut", "Almond", "Dairy", "Strawberry", "Blueberry" });
+            cmbboxAllergy.Location = new Point(3, 328);
+            cmbboxAllergy.Name = "cmbboxAllergy";
+            cmbboxAllergy.Size = new Size(114, 28);
+            cmbboxAllergy.TabIndex = 3;
+            // 
+            // chkboxAllergy
+            // 
+            chkboxAllergy.AutoSize = true;
+            chkboxAllergy.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            chkboxAllergy.Location = new Point(3, 307);
+            chkboxAllergy.Name = "chkboxAllergy";
+            chkboxAllergy.Size = new Size(76, 22);
+            chkboxAllergy.TabIndex = 2;
+            chkboxAllergy.Text = "Allergy?";
+            chkboxAllergy.UseVisualStyleBackColor = true;
+            chkboxAllergy.CheckedChanged += chkboxAllergy_CheckedChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Maroon;
+            label4.Location = new Point(3, 8);
+            label4.Name = "label4";
+            label4.Size = new Size(64, 26);
+            label4.TabIndex = 2;
+            label4.Text = "Items";
+            // 
+            // listviewItems
+            // 
+            listviewItems.BackColor = Color.AntiqueWhite;
+            listviewItems.Columns.AddRange(new ColumnHeader[] { colAmount, colName, colAllergens, colPrice });
+            listviewItems.FullRowSelect = true;
+            listviewItems.GridLines = true;
+            listviewItems.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            listviewItems.Location = new Point(3, 39);
+            listviewItems.MultiSelect = false;
+            listviewItems.Name = "listviewItems";
+            listviewItems.Size = new Size(419, 263);
+            listviewItems.TabIndex = 1;
+            listviewItems.TabStop = false;
+            listviewItems.UseCompatibleStateImageBehavior = false;
+            listviewItems.View = View.Details;
+            listviewItems.SelectedIndexChanged += listviewItems_SelectedIndexChanged;
+            // 
+            // colAmount
+            // 
+            colAmount.Text = "Size";
+            // 
+            // colName
+            // 
+            colName.Text = "Name";
+            colName.Width = 150;
+            // 
+            // colAllergens
+            // 
+            colAllergens.Text = "Allergens";
+            colAllergens.Width = 110;
+            // 
+            // colPrice
+            // 
+            colPrice.Text = "$__.__";
+            // 
+            // txtSubtotal
+            // 
+            txtSubtotal.Location = new Point(241, 233);
+            txtSubtotal.Name = "txtSubtotal";
+            txtSubtotal.ReadOnly = true;
+            txtSubtotal.Size = new Size(100, 27);
+            txtSubtotal.TabIndex = 9;
+            txtSubtotal.TabStop = false;
+            // 
+            // rtxtComments
+            // 
+            rtxtComments.BackColor = Color.AntiqueWhite;
+            rtxtComments.Location = new Point(3, 295);
+            rtxtComments.Name = "rtxtComments";
+            rtxtComments.Size = new Size(338, 73);
+            rtxtComments.TabIndex = 6;
+            rtxtComments.Text = "";
+            rtxtComments.TextChanged += rtxtComments_TextChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.Location = new Point(174, 238);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 18);
+            label7.TabIndex = 5;
+            label7.Text = "Subtotal:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Trebuchet MS", 7.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label3.Location = new Point(3, 275);
+            label3.Name = "label3";
+            label3.Size = new Size(75, 18);
+            label3.TabIndex = 5;
+            label3.Text = "Comments:";
+            // 
+            // listviewOrder
+            // 
+            listviewOrder.BackColor = Color.AntiqueWhite;
+            listviewOrder.Columns.AddRange(new ColumnHeader[] { colOrderedCount, colOrderedName, colOrderedAllergen, colOrderedPrice });
+            listviewOrder.FullRowSelect = true;
+            listviewOrder.GridLines = true;
+            listviewOrder.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            listviewOrder.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            listviewOrder.Location = new Point(3, 29);
+            listviewOrder.Name = "listviewOrder";
+            listviewOrder.Size = new Size(338, 198);
+            listviewOrder.TabIndex = 4;
+            listviewOrder.TabStop = false;
+            listviewOrder.UseCompatibleStateImageBehavior = false;
+            listviewOrder.View = View.Details;
+            // 
+            // colOrderedCount
+            // 
+            colOrderedCount.Text = "#";
+            colOrderedCount.Width = 30;
+            // 
+            // colOrderedName
+            // 
+            colOrderedName.Text = "Name";
+            colOrderedName.Width = 130;
+            // 
+            // colOrderedAllergen
+            // 
+            colOrderedAllergen.Text = "Allergen";
+            colOrderedAllergen.Width = 80;
+            // 
+            // colOrderedPrice
+            // 
+            colOrderedPrice.Text = "$__.__";
+            // 
+            // OrderForm
+            // 
+            AcceptButton = btnContinue;
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Bisque;
+            CancelButton = btnBack;
+            ClientSize = new Size(800, 451);
+            ControlBox = false;
+            Controls.Add(splitContainer1);
+            Name = "OrderForm";
+            SizeGripStyle = SizeGripStyle.Hide;
+            Text = "Olive Branch Bakes | Order Menu";
+            Load += OrderForm_Load;
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel1.PerformLayout();
+            splitContainer2.Panel2.ResumeLayout(false);
+            splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numAmount).EndInit();
+            ResumeLayout(false);
+        }
+
+        #endregion
+        private Label label1;
+        private Label label2;
+        private Button btnContinue;
+        private Button btnClear;
+        private Button btnDelete;
+        private SplitContainer splitContainer1;
+        private ListView listviewOrder;
+        private SplitContainer splitContainer2;
+        private RichTextBox rtxtComments;
+        private Label label3;
+        private CheckBox chkboxAllergy;
+        private Label label4;
+        private ListView listviewItems;
+        private NumericUpDown numAmount;
+        private Label label5;
+        private ComboBox cmbboxAllergy;
+        private Button btnAdd;
+        private ComboBox cmbboxFilter;
+        private Label label6;
+        private ColumnHeader colName;
+        private ColumnHeader colPrice;
+        private ColumnHeader colAllergens;
+        private ColumnHeader colAmount;
+        private ColumnHeader colOrderedName;
+        private ColumnHeader colOrderedPrice;
+        private ColumnHeader colOrderedCount;
+        private ColumnHeader colOrderedAllergen;
+        private Button btnBack;
+        private TextBox txtSubtotal;
+        private Label label7;
+    }
+}

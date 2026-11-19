@@ -1,10 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\CookiesCakesCroissants\\",
+  "WorkspaceRootPath": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8B663B33-D30E-43FC-A23B-0D1E3E5C64D9}|CookiesCakesCroissants.csproj|d:\\backup\\documents\\school\\faulkner\\cs3388 object oriented programming\\projects\\cookiescakescroissants\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8B663B33-D30E-43FC-A23B-0D1E3E5C64D9}|CookiesCakesCroissants.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|c:\\users\\784517\\documents\\cookiescakescroissants\\branches\\scones n sweets\\objects\\order assets\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|solutionrelative:branches\\scones n sweets\\objects\\order assets\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|c:\\users\\784517\\documents\\cookiescakescroissants\\branches\\scones n sweets\\objects\\customers\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|solutionrelative:branches\\scones n sweets\\objects\\customers\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|c:\\users\\784517\\documents\\cookiescakescroissants\\branches\\scones n sweets\\forms\\admin\\adminconsoleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|solutionrelative:branches\\scones n sweets\\forms\\admin\\adminconsoleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|c:\\users\\784517\\documents\\cookiescakescroissants\\branches\\scones n sweets\\forms\\payeswelcomeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|solutionrelative:branches\\scones n sweets\\forms\\payeswelcomeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|c:\\users\\784517\\documents\\cookiescakescroissants\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|c:\\users\\784517\\documents\\cookiescakescroissants\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|c:\\users\\784517\\documents\\cookiescakescroissants\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4A895C4B-C007-9FE5-D5A7-8B569F24C5CE}|CookiesCakesCroissants.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,15 +43,91 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\CookiesCakesCroissants\\Form1.cs",
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Branches\\Scones N Sweets\\Objects\\Order Assets\\Order.cs",
+              "RelativeDocumentMoniker": "Branches\\Scones N Sweets\\Objects\\Order Assets\\Order.cs",
+              "ToolTip": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Branches\\Scones N Sweets\\Objects\\Order Assets\\Order.cs",
+              "RelativeToolTip": "Branches\\Scones N Sweets\\Objects\\Order Assets\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-19T19:13:39.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Branches\\Scones N Sweets\\Objects\\Customers\\Account.cs",
+              "RelativeDocumentMoniker": "Branches\\Scones N Sweets\\Objects\\Customers\\Account.cs",
+              "ToolTip": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Branches\\Scones N Sweets\\Objects\\Customers\\Account.cs",
+              "RelativeToolTip": "Branches\\Scones N Sweets\\Objects\\Customers\\Account.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAiwJwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-19T19:13:23.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdminConsoleForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Branches\\Scones N Sweets\\Forms\\Admin\\AdminConsoleForm.cs",
+              "RelativeDocumentMoniker": "Branches\\Scones N Sweets\\Forms\\Admin\\AdminConsoleForm.cs",
+              "ToolTip": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Branches\\Scones N Sweets\\Forms\\Admin\\AdminConsoleForm.cs [Design]",
+              "RelativeToolTip": "Branches\\Scones N Sweets\\Forms\\Admin\\AdminConsoleForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-19T19:10:28.52Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PayesWelcomeForm.cs",
+              "DocumentMoniker": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Branches\\Scones N Sweets\\Forms\\PayesWelcomeForm.cs",
+              "RelativeDocumentMoniker": "Branches\\Scones N Sweets\\Forms\\PayesWelcomeForm.cs",
+              "ToolTip": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Branches\\Scones N Sweets\\Forms\\PayesWelcomeForm.cs",
+              "RelativeToolTip": "Branches\\Scones N Sweets\\Forms\\PayesWelcomeForm.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-19T19:03:43.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "D:\\Backup\\Documents\\School\\Faulkner\\CS3388 Object Oriented Programming\\Projects\\CookiesCakesCroissants\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-19T19:01:56.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-19T19:00:52.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\784517\\Documents\\CookiesCakesCroissants\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-17T16:02:43.008Z",
-              "EditorCaption": " [Design]",
-              "OwnerCaption": "%2"
+              "EditorCaption": " [Design]"
             }
           ]
         }

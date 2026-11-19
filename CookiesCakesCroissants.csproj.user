@@ -1,8 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <Compile Update="Form1.cs">
-            <SubType>Form</SubType>
-        </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Branches\Scones N Sweets\Forms\Admin\PayesAdminConsoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Branches\Scones N Sweets\Forms\Admin\PayesItemCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Branches\Scones N Sweets\Forms\Login\PayesCreateAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Branches\Scones N Sweets\Forms\Login\PayesCustomerHomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Branches\Scones N Sweets\Forms\Login\PayesLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Branches\Scones N Sweets\Forms\Ordering\PayesOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Branches\Scones N Sweets\Forms\Ordering\PayesPaymentEntryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Branches\Scones N Sweets\Forms\PayesWelcomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GroupAdminConsoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
