@@ -11,8 +11,8 @@ namespace OliveBranchBakes
 {
     public static class DataManagement
     {
-        private const string PathItems = @"..\..\..\Documents\ItemStorage.txt";
-        private const string PathOrders = @"..\..\..\Documents\OrderListStorage.txt";
+        private const string PathItems = @"..\..\..\Branches\Scones N Sweets\Documents\ItemStorage.txt";
+        private const string PathOrders = @"..\..\..\Branches\Scones N Sweets\Documents\OrderListStorage.txt";
         private const string Delimiter = "|";
 
         // Heavily borrowed from ExtraStarts ch14

@@ -19,7 +19,7 @@ namespace OliveBranchBakes.Objects
     }
     public class Order
     {
-        private static string pathStart => $@"..\..\..\Documents\Orders\";
+        private static string pathStart => $@"..\..\..\Branches\Scones N Sweets\Documents\Orders\";
 
         private List<OrderItemGroup> itemGroups;
         public int Count => itemGroups.Count;

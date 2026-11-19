@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CookiesCakesCroissants")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a3b12f0c34e9951572fdbe5e78a5668935b67fa")]
 [assembly: System.Reflection.AssemblyProductAttribute("CookiesCakesCroissants")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CookiesCakesCroissants")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

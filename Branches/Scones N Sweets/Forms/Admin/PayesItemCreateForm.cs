@@ -1,0 +1,399 @@
+﻿using OliveBranchBakes.Objects;
+using OliveBranchBakes.Objects.Order_Assets;
+using OliveBranchBakes.Objects.OrderItem_Types;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace OliveBranchBakes.Forms.Admin
+{
+    public partial class PayesItemCreateForm : Form
+    {
+        private AllergenList allergenList = new();
+        private ItemCategories categoryList = new();
+
+        public PayesItemCreateForm()
+        {
+            InitializeComponent();
+        }
+        private void ItemCreateForm_Load(object sender, EventArgs e)
+        {
+            // Lists
+            Fill();
+
+            txtAllergens.Clear();
+            txtCategories.Clear();
+
+            UpdateAllergenText();
+            UpdateCategoryText();
+
+            //categoryList.Add(CategoryEnums.Misc);
+            //txtCategories.Text = categoryList.ToString(", ");
+        }
+
+        private OrderItem item = null!;
+
+        public OrderItem GetNewItem()
+        {
+            // Seasonal initialization
+            chkSeasonal.Checked = false;
+
+            dtpStart.Enabled = chkSeasonal.Checked;
+            dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+            dtpStart.MaxDate = new DateTime(DateTime.Today.Year, 12, 31);
+
+            dtpEnd.Enabled = chkSeasonal.Checked;
+            dtpEnd.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+            dtpEnd.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
+
+            this.ShowDialog();
+            return item;
+        }
+
+        public OrderItem EditItem(OrderItem orderItem)
+        {
+            txtName.Text = orderItem.Name;
+            txtPrice.Text = orderItem.Price.ToString();
+            txtAllergens.Text = orderItem.AllergenList.ToString(", ");
+            categoryList = orderItem.Categories;
+            allergenList = orderItem.AllergenList;
+
+            // Check Object Type
+            if (orderItem is DrinkItem drinkItem)
+            {
+                rdbDrink.Checked = true;
+                lblAmount.Text = "Ounces:";
+                txtAmount.Text = drinkItem.Ounces.ToString();
+            }
+            else if (orderItem is FoodItem foodItem)
+            {
+                rdbFood.Checked = true;
+                lblAmount.Text = "Calories:";
+                txtAmount.Text = foodItem.Calories.ToString();
+            }
+
+            // Fill in seasonal data if applicable
+            if (orderItem.Seasonal)
+            {
+                chkSeasonal.Checked = true;
+                DateTime start = (DateTime)orderItem.Season![0]!;
+                DateTime end = (DateTime)orderItem.Season[1]!;
+
+                dtpStart.Enabled = chkSeasonal.Checked;
+                dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+                dtpStart.MaxDate = end;
+
+                dtpEnd.Enabled = chkSeasonal.Checked;
+                dtpEnd.MinDate = start;
+                dtpEnd.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
+
+                dtpStart.Value = start;
+                dtpEnd.Value = end;
+            }
+            else
+            {
+                // Seasonal initialization
+                chkSeasonal.Checked = false;
+
+                dtpStart.Enabled = chkSeasonal.Checked;
+                dtpStart.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+                dtpStart.MaxDate = new DateTime(DateTime.Today.Year, 12, 31);
+
+                dtpEnd.Enabled = chkSeasonal.Checked;
+                dtpEnd.MinDate = new DateTime(DateTime.Today.Year, 1, 1);
+                dtpEnd.MaxDate = new DateTime(DateTime.Today.Year + 1, 12, 31);
+            }
+
+            this.ShowDialog();
+            return item;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = DialogResult.Yes;
+            if (!chkActive.Enabled)
+                dialogResult = MessageBox.Show(
+                        $"Item, {txtName.Text}, has been marked INACTIVE. " +
+                        "It will not appear in menu until reactivated.\n\n" +
+                        "Are you sure this is correct?", "Confirm Status",
+                        MessageBoxButtons.YesNo);
+            if (IsValidData() && dialogResult == DialogResult.Yes)
+            {
+                // Check if seasonal
+                if (chkSeasonal.Checked)
+                {
+                    // Check object type
+
+                    // FoodItem
+                    if (rdbFood.Checked)
+                        item = new FoodItem(
+                            Convert.ToInt16(txtAmount.Text),
+                            categoryList,
+                            txtName.Text,
+                            Convert.ToDecimal(txtPrice.Text),
+                            allergenList,
+                            new DateRange(dtpStart.Value, dtpEnd.Value),
+                            chkActive.Checked);
+                    // DrinkItem
+                    else
+                        item = new DrinkItem(
+                            Convert.ToInt16(txtAmount.Text),
+                            categoryList,
+                            txtName.Text,
+                            Convert.ToDecimal(txtPrice.Text),
+                            allergenList,
+                            new DateRange(dtpStart.Value, dtpEnd.Value),
+                            chkActive.Checked);
+                }
+                else
+                {
+                    // Check Object Type
+
+                    // FoodItem
+                    if (rdbFood.Checked)
+                        item = new FoodItem(
+                            Convert.ToInt16(txtAmount.Text),
+                            categoryList,
+                            txtName.Text,
+                            Convert.ToDecimal(txtPrice.Text),
+                            allergenList,
+                            chkActive.Checked);
+                    // DrinkItem
+                    else
+                        item = new DrinkItem(
+                            Convert.ToInt16(txtAmount.Text),
+                            categoryList,
+                            txtName.Text,
+                            Convert.ToDecimal(txtPrice.Text),
+                            allergenList,
+                            chkActive.Checked);
+                }
+            }
+            this.Close();
+        }
+
+        private bool IsValidData()
+        {
+            bool success = true;
+            string errorMessage = "";
+
+            // Expand checks when I add more properties to OrderItem
+            errorMessage += Validator.IsPresent(txtName.Text, "Item Name");
+            errorMessage += Validator.IsPresent(txtPrice.Text, "Price");
+            errorMessage += Validator.IsDecimal(txtPrice.Text, "Price");
+            errorMessage += Validator.IsPresent(txtAmount.Text, (rdbFood.Checked) ? "Calories" : "Ounces");
+            errorMessage += Validator.IsInteger(txtAmount.Text, (rdbFood.Checked) ? "Calories" : "Ounces");
+
+            //errorMessage += Validator.IsPresent(txtAllergens.Text, "Allergen Ingredients");
+
+            if (errorMessage != "")
+            {
+                success = false;
+                MessageBox.Show(errorMessage, "Entry Error");
+            }
+            return success;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // Track Type
+        // 
+        // Clear txtAmount, and set lblAmount to the correct variable name
+        private void rdbFood_CheckedChanged(object sender, EventArgs e)
+        {
+            txtAmount.Clear();
+
+            lblAmount.Text = (rdbFood.Checked) ? "Calories:" : "Ounces:";
+        }
+
+        // Seasonal Info
+        private void chkSeasonal_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpStart.Enabled = chkSeasonal.Checked;
+            dtpEnd.Enabled = chkSeasonal.Checked;
+        }
+
+        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        {
+            // Match dtpEnd lower bound by the dtpStart value
+            dtpEnd.MinDate = dtpStart.Value;
+
+            if (dtpStart.Value > dtpEnd.Value)
+                dtpEnd.Value = dtpStart.Value;
+        }
+
+        private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        {
+            // Check if dtpEnd.Value is currently in the next year
+            if (dtpEnd.Value.Year > DateTime.Today.Year)
+                dtpStart.MaxDate = new DateTime(DateTime.Today.Year, 12, 31);
+            else
+                // Match dtpStart upper bound by the dtpEnd value
+                dtpStart.MaxDate = dtpEnd.Value;
+
+            if (dtpEnd.Value < dtpStart.Value)
+                dtpStart.Value = dtpEnd.Value;
+
+        }
+
+        // List Controls
+
+        // Allergens
+        private void btnAddAllergy_Click(object sender, EventArgs e)
+        {
+            int index = lbAllergens.SelectedIndex;
+            
+            if (index == -1)
+                MessageBox.Show("Please select an Allergy", "Selection Error");
+            // Check if Allergy already exists in allergyList
+            else
+            {
+                Allergen allergen = new(lbAllergens.Items[index].ToString()!);
+                if (allergenList.IndexOf(allergen) != -1)
+                {
+                    MessageBox.Show("Allergy already in list", "Selection Error");
+                }
+                else
+                {
+                    allergenList.Add(allergen);
+                    UpdateAllergenText();
+                }
+            }   
+        }
+        private void btnRemoveAllergy_Click(object sender, EventArgs e)
+        {
+            int index = lbAllergens.SelectedIndex;
+
+            if (index == -1)
+                MessageBox.Show("Please select an Allergy", "Selection Error");
+            else
+            {
+                Allergen allergen = new(lbAllergens.Items[index].ToString()!);
+                if (allergenList.IndexOf(allergen) == -1)
+                {
+                    MessageBox.Show("Allergy is not in list", "Selection Error");
+                }
+                else
+                {
+                    allergenList.Remove(allergen);
+                    UpdateAllergenText();
+                }
+            }
+        }
+        private void btnClearAllergies_Click(object sender, EventArgs e)
+        {
+            allergenList.Clear();
+            UpdateAllergenText();
+        }
+
+        // Category
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+            // fetches the category from the selection
+            int index = lbCategories.SelectedIndex;
+            
+            if (index == -1)
+                MessageBox.Show("Please select a Category", "Selection Error");
+            else
+            {
+                CategoryEnums category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), lbCategories.Items[index].ToString()!);
+                // Check if Allergy already exists in allergyList
+                if (categoryList.IndexOf(category) != -1)
+                {
+                    MessageBox.Show("Category already in list", "Selection Error");
+                }
+                else
+                {
+                    categoryList.Add(category);
+                    UpdateCategoryText();
+                }
+            }
+        }
+        private void btnRemoveCategory_Click(object sender, EventArgs e)
+        {
+            int index = lbCategories.SelectedIndex;
+            
+            if (index == -1)
+                MessageBox.Show("Please select a Category", "Selection Error");
+            else
+            {
+                CategoryEnums category = (CategoryEnums)Enum.Parse(typeof(CategoryEnums), lbCategories.Items[index].ToString()!);
+                if (categoryList.IndexOf(category) == -1)
+                {
+                    MessageBox.Show("Category is not in list", "Selection Error");
+                }
+                else
+                {
+                    categoryList.Remove(category);
+                    UpdateCategoryText();
+                }
+            }
+        }
+        private void btnClearCategories_Click(object sender, EventArgs e)
+        {
+            categoryList.Clear();
+            UpdateCategoryText();
+        }
+
+        // Updating listboxes
+
+        // Set allergen text to the correct list
+        private void UpdateAllergenText()
+        {
+            // If the list is empty, add "None" as the listed allergen
+            if (allergenList.Count == 0)
+                allergenList.Add(AllergenIngredients.None);
+            else if (allergenList.Count > 1)
+            {
+                // If "None" is a listed allergen among others, remove it
+                int n = allergenList.IndexOf(new Allergen(AllergenIngredients.None));
+                if (n != -1)
+                    allergenList.RemoveAt(n);
+            }
+            txtAllergens.Text = allergenList.ToString(", ");
+        }
+        // Set category text to the correct list
+        private void UpdateCategoryText()
+        {
+            // If the list is empty, add "Misc" as the listed allergen
+            if (categoryList.Count == 0)
+                categoryList.Add(CategoryEnums.Misc);
+            else if (categoryList.Count > 1)
+            {
+                // If "Misc" is a listed allergen among others, remove it
+                int n = categoryList.IndexOf(CategoryEnums.Misc);
+                if (n != -1)
+                    categoryList.RemoveAt(n);
+            }
+            txtCategories.Text = categoryList.ToString(", ");
+        }
+
+        // Fills the listbox items
+        private void Fill()
+        {
+            lbAllergens.Items.Clear();
+            lbCategories.Items.Clear();
+
+            // Loop through AllergenIngredients and ignore "None"
+            foreach (string allergen in Enum.GetNames(typeof(AllergenIngredients)))
+                if (allergen != "None")
+                    lbAllergens.Items.Add(allergen);
+
+            // Loop through CategoryEnums
+            foreach (string category in Enum.GetNames(typeof(CategoryEnums)))
+                lbCategories.Items.Add(category);
+        }
+
+        private void chkActive_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
